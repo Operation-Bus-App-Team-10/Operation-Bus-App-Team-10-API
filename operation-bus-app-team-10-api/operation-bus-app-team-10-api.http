@@ -1,0 +1,6 @@
+@operation_bus_app_team_10_api_HostAddress = http://localhost:5028
+
+GET {{operation_bus_app_team_10_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

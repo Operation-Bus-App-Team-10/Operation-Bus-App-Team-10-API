@@ -1,0 +1,6 @@
+@Operation_Bus_App_Team_10_API.Api_HostAddress = http://localhost:5282
+
+GET {{Operation_Bus_App_Team_10_API.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
