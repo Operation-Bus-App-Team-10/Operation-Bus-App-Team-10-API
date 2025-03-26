@@ -1,6 +1,13 @@
-﻿namespace Operation.Bus_App_Team_10_API.Domain;
+using Jet.Piranha.Domain.Catalog;
+using Microsoft.EntityFrameworkCore;
 
-public class Class1
+namespace Operation.Bus_App_Team_10_API.Domain;
+
+public class StoreContext : DbContext
 {
+    public StoreContext(DbContextOptions<StoreContext> options)
+      : base(options)
+      {}
 
+      public DbSet<Item> Items { get; set; }
 }
