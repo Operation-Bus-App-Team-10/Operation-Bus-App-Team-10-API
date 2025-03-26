@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Emerald.Tiger.Domain.Catalog;
+using Emerald.Tiger.Data;
 using Jet.Piranha.Domain.Catalog;
 
 namespace Jet.Piranha.Api.Controllers
@@ -8,6 +10,16 @@ namespace Jet.Piranha.Api.Controllers
     public class CatalogController : ControllerBase
     {
         [HttpGet]
+        public IActionResult GetItems()
+        {
+            return Ok(_db.Items);
+            }
+        private readonly StoreContext_db;
+
+        public CatalogController(StoreContext db)
+        {
+            _db = db;
+            }
         public IActionResult GetItems()
         {
             var items = new List<Item>()
@@ -20,6 +32,12 @@ namespace Jet.Piranha.Api.Controllers
         }
 
         [HttpGet("{id:int}")]
+
+        public class Rating
+        {
+            public int Id { get; set; }
+            public int Star { get; set; }
+            }
         public IActionResult GetItem(int id)
         {
             var item = new Item("Shirt", "Ohio State shirt.", "Nike", 29.99m);
