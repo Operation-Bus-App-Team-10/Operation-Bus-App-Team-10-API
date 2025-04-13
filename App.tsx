@@ -1,61 +1,9 @@
-import Menu from "./index";
 import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Payment from "./Payment"; // Adjust if it's in a subfolder
 import "./index.css";
 
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-
-type Product = {
-    id: number;
-    name: string;
-    price: number;
-    imageUrl: string;
-  };  
-
-function App() {
-    const [products, setProducts] = useState<Product[]>([]);
-
-useEffect(() => {
-  axios.get('https://localhost:7250/catalog', {
-    headers: { 'Accept': 'application/json' }
-  })
-  .then(response => setProducts(response.data))
-  .catch(error => console.error('Error fetching products:', error));
-}, []);
-
-    return (
-        <div className="grid-container">
-            <header>
-                <h1>Welcome to Our Website</h1>
-                <Menu />
-            </header>
-            <main>
-                <p>This is a simple website structure.</p>
-            </main>
-            <footer>
-                <p>© 2025 Operation Bus App Team 10 </p>
-            </footer>
-        </div>
-    );
-}
-
-export default App;
-import Payment from "./Payment/Payment";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-function App() {
-    return (
-        <Router>
-            <Routes>
-                <Route path="/payment" element={<Payment />} />
-            </Routes>
-        </Router>
-    );
-}
-
-export default App;
-import { Link } from "react-router-dom";
-
+// Inline Menu Component
 const Menu = () => {
     return (
         <nav>
@@ -67,5 +15,26 @@ const Menu = () => {
     );
 };
 
-export default Menu;
+// Inline Home Component
+const Home = () => {
+    return (
+        <div>
+            <h2>Welcome to the Home Page</h2>
+            <p>This is the homepage of the app.</p>
+        </div>
+    );
+};
 
+function App() {
+    return (
+        <Router>
+            <Menu />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/payment" element={<Payment />} />
+            </Routes>
+        </Router>
+    );
+}
+
+export default App;
