@@ -2,7 +2,27 @@ import Menu from "./index";
 import React from "react";
 import "./index.css";
 
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+type Product = {
+    id: number;
+    name: string;
+    price: number;
+    imageUrl: string;
+  };  
+
 function App() {
+    const [products, setProducts] = useState<Product[]>([]);
+
+useEffect(() => {
+  axios.get('https://localhost:7250/catalog', {
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => setProducts(response.data))
+  .catch(error => console.error('Error fetching products:', error));
+}, []);
+
     return (
         <div className="grid-container">
             <header>
