@@ -69,6 +69,9 @@ namespace Jet.Piranha.Api.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize("delete:catalog")]
+        DELETE https://localhost:7250/catalog/3
+
         public IActionResult Delete(int id)
         {
             return NoContent();
