@@ -17,6 +17,11 @@ builder.Services.AddAuthentication(options =>
 {
     options.AddPolicy("delete:catalog" , policy =>
     policy.RequireAuthenticatedUser().RequireClaim("scope", "delete:catalog"));
+    [HttpDelete("{id:int}")]
+    [Authorize("delete:catalog")]
+    public IactionResult Delete(int id)
+    {
+        var item = _db.Items.Find(id);
 };
 
 
